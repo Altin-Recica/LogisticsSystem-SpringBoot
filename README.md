@@ -1,24 +1,24 @@
-# Logistiek Systeem
+# Logistics System
 
-Dit project is een logistiek platform, genaamd `Mineral Flow`, ontwikkeld voor de Krystal distributie Groep (KdG). Het doel is om hun verouderde systeem voor de distributie van mineralen (zoals gips, ijzererts en cement) te moderniseren. De applicatie optimaliseert de volledige materiaalstroom, van de planning en aankomst van vrachtwagens (landzijde) tot de opslag in magazijnen en het laden van schepen voor kopers (waterzijde). Het systeem berekent opslagkosten voor leveranciers en commissies op verkopen, en beheert complexe logistieke processen zoals afspraken, wachtrijen en inspecties.
+This project is a logistics platform called `Mineral Flow`, developed for the Krystal Distribution Group (KdG). The goal is to modernize their outdated system for distributing minerals (such as gypsum, iron ore, and cement). The application optimizes the entire material flow, from planning and truck arrivals (land side) to warehouse storage and loading ships for buyers (water side). The system calculates storage costs for suppliers and sales commissions, and manages complex logistics processes such as appointments, queues, and inspections.
 
-## Kernfunctionaliteiten
+## Key Features
 
-- **Magazijn Systeem:** Beheert voorraadniveaus, opslagcapaciteit en berekent de dagelijkse facturen (opslagkosten en commissies).
+- **Warehouse System:** Manages inventory levels, storage capacity, and calculates daily invoices (storage costs and commissions).
 
-- **Landzijde Systeem:** Verwerkt de aankomst van vrachtwagens via een afsprakensysteem en een FIFO-wachtrij. Registreert wegingen en beheert de levering aan magazijnen. Inclusief een webinterface.
+- **Land Side System:** Processes truck arrivals via an appointment system and a FIFO queue. Records weighings and manages deliveries to warehouses. Includes a web interface.
 
-- **Waterzijde Systeem:** Coördineert het laden van schepen op basis van aankooporders (POs). Plant en volgt verplichte operaties zoals inspecties (IO) en bunkeren (BO).
+- **Water Side System:** Coordinates ship loading based on purchase orders (POs). Plans and tracks mandatory operations such as inspections (IO) and bunkering (BO).
 
-## Technische Architectuur
+## Technical Architecture
 
 - **Backend:** Java Spring Boot
-- **Database:** PostgreSQL (met aparte schema's per service: `Land`, `Water`, `Warehouse`)
-- **Messaging:** RabbitMQ (voor asynchrone communicatie tussen services)
-- **Security:** Keycloak (voor authenticatie en autorisatie van de REST endpoints)
-- **Frontend (Landzijde):** Spring MVC met Thymeleaf
-- **Infrastructuur:** Docker & Docker Compose
+- **Database:** PostgreSQL (with separate schemas per service: `Land`, `Water`, `Warehouse`)
+- **Messaging:** RabbitMQ (for asynchronous communication between services)
+- **Security:** Keycloak (for authentication and authorization of REST endpoints)
+- **Frontend (Land Side):** Spring MVC with Thymeleaf
+- **Infrastructure:** Docker & Docker Compose
 
-## Auteur
+## Author
 
-**Altin Recica** – Studieproject KDG Hogeschool
+**Altin Recica** – Student Project, KDG University of Applied Sciences
