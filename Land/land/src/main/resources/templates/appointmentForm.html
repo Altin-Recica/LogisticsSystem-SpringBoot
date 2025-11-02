@@ -1,0 +1,97 @@
+<!-- src/main/resources/templates/appointmentForm.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Appointment</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand ms-2" href="#">KDG</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks">Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/create-truck">Vrachtwagen toevoegen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks/overview">Overzicht Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/queue/trucks">Trucks in queue</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments">Afspraken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments/create">Afspraak maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/list">Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/create">Ticket maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/check-plate">Kenteken Controle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/weighbridges">Weegbruggen</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1 class="text-center">Create Afspraak</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form th:action="@{/appointments}" method="post" th:object="${createAppointmentRequest}">
+                <div class="form-group">
+                    <label for="scheduledDateTime">Geplande Datum en Tijd:</label>
+                    <input type="datetime-local" class="form-control" id="scheduledDateTime" placeholder="2024-10-30T20:44" th:field="*{plannedTime}" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="licencePlate">Kenteken:</label>
+                    <select class="form-control" id="licencePlate" th:field="*{licencePlate}" required>
+                        <option value="" disabled selected>Select a Truck</option>
+                        <option th:each="truck : ${trucks}"
+                                th:value="${truck.licencePlate}"
+                                th:text="${truck.licencePlate}"></option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('licencePlate')}" th:errors="*{licencePlate}" class="text-danger"></div>
+
+                    <label for="material">Grondstof:</label>
+                    <select class="form-control" id="material" th:field="*{material}" required>
+                        <option th:each="material : ${materials}"
+                                th:value="${material.name}"
+                                th:text="${material.name}"></option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('material')}" th:errors="*{material}" class="text-danger"></div>
+
+                    <label for="customerName">Klant:</label>
+                    <select class="form-control" id="customerName" th:field="*{clientId}" required>
+                        <option th:each="client : ${clients}"
+                                th:value="${client.clientID}"
+                                th:text="${client.name}"></option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('clientId')}" th:errors="*{clientId}" class="text-danger"></div>
+
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Create Afspraak</button>
+            </form>
+            <div th:if="${message}" class="alert alert-success mt-3" th:text="${message}"></div>
+            <div th:if="${error}" class="alert alert-danger mt-3" th:text="${error}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

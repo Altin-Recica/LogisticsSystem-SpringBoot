@@ -1,0 +1,9 @@
+### Get Commission
+GET http://localhost:8080/api/getCommission
+
+### Generate Invoice Rest
+POST http://localhost:8080/api/invoice
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+

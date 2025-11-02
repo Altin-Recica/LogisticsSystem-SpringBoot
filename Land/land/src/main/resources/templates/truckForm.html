@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Truck</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand ms-2" href="#">KDG</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks">Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/create-truck">Vrachtwagen toevoegen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks/overview">Overzicht Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/queue/trucks">Trucks in queue</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments">Afspraken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments/create">Afspraak maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/list">Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/create">Ticket maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/check-plate">Kenteken Controle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/weighbridges">Weegbruggen</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h1>Create Truck</h1>
+
+    <form action="#" th:action="@{/trucks}" th:object="${truck}" method="post">
+        <div class="mb-3">
+            <label for="licencePlate" class="form-label">Licence Plate:</label>
+            <input type="text" id="licencePlate" th:field="*{licencePlate}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="capacity" class="form-label">Capacity:</label>
+            <input type="number" id="capacity" th:field="*{capacity}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="currentWeight" class="form-label">Current Weight:</label>
+            <input type="number" id="currentWeight" th:field="*{currentWeight}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="tareWeight" class="form-label">Tare Weight:</label>
+            <input type="number" id="tareWeight" th:field="*{tareWeight}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="arrivalTime" class="form-label">Arrival Time:</label>
+            <input type="time" id="arrivalTime" th:field="*{arrivalTime}" class="form-control"/>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" id="hasAppointment" th:field="*{hasAppointment}" class="form-check-input"/>
+            <label for="hasAppointment" class="form-check-label">Has Appointment</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Truck</button>
+    </form>
+
+    <div th:if="${message}" th:text="${message}" class="alert alert-success mt-3"></div>
+</div>
+</body>
+</html>

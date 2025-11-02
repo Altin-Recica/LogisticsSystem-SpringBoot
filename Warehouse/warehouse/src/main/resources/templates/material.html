@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Grondstof</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header text-center">
+            <h1>Grondstof</h1>
+        </div>
+        <div class="card-body">
+            <h3 class="text-primary text-center" th:text="${material.get().name}">een grondstof</h3>
+            <dl class="row mt-4">
+                <dt class="col-sm-4">Opslagprijs per ton per dag</dt>
+                <dd class="col-sm-8" th:text="${storageCost}">-</dd>
+                <dt class="col-sm-4">Verkoopprijs</dt>
+                <dd class="col-sm-8" th:text="${sellingPrice}">-</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+</body>
+</html>

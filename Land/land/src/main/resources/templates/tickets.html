@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}">
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand ms-2" href="#">KDG</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks">Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/create-truck">Vrachtwagen toevoegen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks/overview">Overzicht Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/queue/trucks">Trucks in queue</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments">Afspraken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments/create">Afspraak maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/list">Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/create">Ticket maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/check-plate">Kenteken Controle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/weighbridges">Weegbruggen</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h1 class="text-center">Tickets</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">Kenteken</th>
+                    <th scope="col">Brutogewicht</th>
+                    <th scope="col">Nettogewicht</th>
+                    <th scope="col">Tarragewicht</th>
+                    <th scope="col">Tijdstip</th>
+                </tr>
+                <tr th:each="ticket:${tickets}">
+                    <td th:text="${ticket.licencePlate}"></td>
+                    <td th:text="${ticket.grossWeight}"></td>
+                    <td th:text="${ticket.netWeight}"></td>
+                    <td th:text="${ticket.tareWeight}"></td>
+                    <td th:text="${ticket.timestamp}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

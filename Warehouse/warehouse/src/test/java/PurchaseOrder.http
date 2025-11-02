@@ -1,0 +1,17 @@
+### Create Purchase Order
+POST http://localhost:8080/api/orders/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "clientNumber": 1,
+  "clientName": "Krystal Mineral Supplies"
+}
+
+
+### Fulfill Purchase Order
+POST localhost:8080/api/fulfill-order/1
+Authorization: Bearer {{access_token}}
+
+### Get Purchase Orders
+GET localhost:8080/api/orders

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weegbrug Overzicht</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand ms-2" href="#">KDG</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks">Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/create-truck">Vrachtwagen toevoegen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks/overview">Overzicht Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/queue/trucks">Trucks in queue</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments">Afspraken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments/create">Afspraak maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/list">Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/create">Ticket maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/check-plate">Kenteken Controle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/weighbridges">Weegbruggen</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h1 class="mb-4">Weegbrug Overzicht</h1>
+    <table class="table table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Weegbrugnummer</th>
+            <th>Status</th>
+            <th>Vrachtwagen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="weighbridge : ${weighbridges}">
+            <td th:text="${weighbridge.weighbridgeID}"></td>
+            <td th:text="${weighbridge.available == true ? 'Beschikbaar' : 'Bezet'}"></td>
+            <td th:text="${weighbridge.truck != null ? weighbridge.truck.licencePlate : 'Leeg'}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

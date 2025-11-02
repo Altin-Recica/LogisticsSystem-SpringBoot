@@ -1,0 +1,42 @@
+package be.kdg.sa.land.controller.api;
+
+import be.kdg.sa.land.controller.CreateAppointmentRequest;
+import be.kdg.sa.land.controller.dto.AppointmentDto;
+import be.kdg.sa.land.domain.Appointment;
+import be.kdg.sa.land.service.AppointmentService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api")
+public class AppointmentRestController {
+    private final AppointmentService appointmentService;
+
+    public AppointmentRestController(AppointmentService appointmentService) {
+        this.appointmentService = appointmentService;
+    }
+
+    @PostMapping("/appointment")
+    ResponseEntity<AppointmentDto> create(@Valid @RequestBody CreateAppointmentRequest createAppointmentRequest) {
+        Optional<Appointment> optionalAppointment = this.appointmentService.create(
+                createAppointmentRequest.plannedTime(),
+                createAppointmentRequest.licencePlate(),
+                createAppointmentRequest.material(),
+                createAppointmentRequest.clientName()
+        );
+        return optionalAppointment
+                .map(appointment -> ResponseEntity.status(HttpStatus.CREATED).body(this.mapToDto(appointment)))
+                .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    private AppointmentDto mapToDto(Appointment appointment) {
+        return new AppointmentDto(appointment.getScheduledTime(), appointment.getLicencePlate(), appointment.getMaterial());
+    }
+}

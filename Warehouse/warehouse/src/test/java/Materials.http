@@ -1,0 +1,6 @@
+### Get all materials
+GET http://localhost:8080/api/materials
+
+### Get a specific material
+GET http://localhost:8080/api/materials/Gips
+

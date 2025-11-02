@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Grondstof</title>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}">
+        </script>
+    </head>
+    <body>
+        <div class="m-2">
+            <h1>Grondstoffen</h1>
+            <table class="table">
+                <tr>
+                    <th scope="col">Naam</th>
+                    <th scope="col">OpslagPrijs</th>
+                    <th scope="col">VerkoopPrijs</th>
+                </tr>
+                <tr th:each="material:${materials}">
+                    <td th:text="${material.getName()}"></td>
+                    <td th:text="${materialsStorageCosts.get(material.getName())}"></td>
+                    <td th:text="${materialsSellingPrices.get(material.getName())}"></td>
+                </tr>
+            </table>
+        </div>
+
+    </body>
+</html>

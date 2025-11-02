@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Weighbridge Ticket</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand ms-2" href="#">KDG</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks">Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/create-truck">Vrachtwagen toevoegen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/trucks/overview">Overzicht Vrachtwagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/queue/trucks">Trucks in queue</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments">Afspraken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/appointments/create">Afspraak maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/list">Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/ticket/create">Ticket maken</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/check-plate">Kenteken Controle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8090/weighbridges">Weegbruggen</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 border border-black rounded p-4">
+            <h2 class="mb-4 text-center">Weegbrug Ticket Aanmaken</h2>
+
+            <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>
+            <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
+            <form th:action="@{/ticket/create}" method="post" th:object="${createTicketRequest}">
+                <div class="form-group">
+                    <label for="licencePlate">Kenteken</label>
+                    <select class="form-control" id="licencePlate" th:field="*{licencePlate}" required>
+                        <option th:each="truck : ${trucks}" th:value="${truck.licencePlate}" th:text="${truck.licencePlate}"> </option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('licencePlate')}" th:errors="*{licencePlate}" class="text-danger"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="brutoGewicht">Brutogewicht</label>
+                    <input type="number" class="form-control" id="brutoGewicht" th:field="*{grossWeight}"
+                           placeholder="Voer brutogewicht in" required>
+                    <div th:if="${#fields.hasErrors('grossWeight')}" th:errors="*{grossWeight}"
+                         class="text-danger"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tarraGewicht">Tarragewicht</label>
+                    <input type="number" class="form-control" id="tarraGewicht" th:field="*{teraWeight}"
+                           placeholder="Voer tarragewicht in" required>
+                    <div th:if="${#fields.hasErrors('teraWeight')}" th:errors="*{teraWeight}" class="text-danger"></div>
+                </div>
+
+                <label for="customerName">Klant Id:</label>
+                <input type="text" class="form-control" id="customerName" th:field="*{clientId}" required />
+                <div th:if="${#fields.hasErrors('clientId')}" th:errors="*{clientId}" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label for="type">Grondstof</label>
+                    <input type="text" class="form-control" id="type" th:field="*{type}"
+                           placeholder="Voer grondstof type in" required>
+                    <div th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="text-danger"></div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mt-2">Ticket Aanmaken</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

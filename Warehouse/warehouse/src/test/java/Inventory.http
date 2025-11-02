@@ -1,0 +1,10 @@
+### Get all materials in inventory
+GET http://localhost:8080/api/inventory
+
+
+### Get all materials in inventory oldest first
+GET http://localhost:8080/api/inventory/oldestFirst
+
+### Get all materials in inventory from a specific warehouse
+GET http://localhost:8080/api/inventory/1
+

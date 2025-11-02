@@ -1,0 +1,21 @@
+[
+  {
+    "orderDate": "2024-10-31T10:00:00Z",
+    "clientNumber": "1",
+    "clientName": "Krystal Mineral Supplies",
+    "totalAmount": 0.0,
+    "fulfilled": false,
+    "orderLines": [
+      {
+        "materialType": "Gips",
+        "quantity": 300,
+        "pricePerTon": 13
+      },
+      {
+        "materialType": "cement",
+        "quantity": 50,
+        "pricePerTon": 95
+      }
+    ]
+  }
+]

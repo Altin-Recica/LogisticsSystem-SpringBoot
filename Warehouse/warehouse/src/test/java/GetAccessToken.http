@@ -1,0 +1,9 @@
+### GET access token with warehouse manager
+POST http://localhost:8180/realms/Warehouse/protocol/openid-connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+client_id=warehouse&client_secret=7HklTWoTSqqS7pROZRlZkrsBmGefxhUK&username=manager&password=kdgmanager&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
